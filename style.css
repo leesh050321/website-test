@@ -1,12 +1,11 @@
 :root {
-    --main-color: #3f51b5; /* Deep Indigo */
-    --sub-color: #ff9800;  /* Amber/Orange */
+    --main-color: #3f51b5;
+    --sub-color: #ff9800;
     --bg-color: #f8f9fa;
     --text-color: #212529;
     --white: #ffffff;
     --gray: #6c757d;
     
-    /* Lotto Ball Colors */
     --lotto-yellow: #fbc02d;
     --lotto-blue: #2196f3;
     --lotto-red: #f44336;
@@ -16,23 +15,47 @@
 
 body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 40px 0; /* 여백 추가 */
+    margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
 }
 
-.container {
+.page-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.main-content {
+    flex: 1.5;
+    min-width: 0; /* Flex item shrink fix */
+}
+
+.side-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.container, .comments-container {
     background-color: var(--white);
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.comments-container h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: var(--main-color);
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* 기존 스타일 유지 및 보완 */
+.container {
     text-align: center;
-    width: 100%;
-    max-width: 500px;
 }
 
 h1 {
@@ -62,34 +85,13 @@ button {
     flex: 1;
 }
 
-button#generate5Btn {
-    background-color: var(--sub-color);
-}
+button#generate5Btn { background-color: var(--sub-color); }
+button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); filter: brightness(1.1); }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    filter: brightness(1.1);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-.results-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+.results-container { display: flex; flex-direction: column; gap: 20px; }
 .lotto-set {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    background-color: #f1f3f5;
-    border-radius: 15px;
-    animation: fadeIn 0.5s ease forwards;
+    display: flex; justify-content: center; gap: 10px; padding: 15px;
+    background-color: #f1f3f5; border-radius: 15px; animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -98,84 +100,34 @@ button:active {
 }
 
 .number {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    width: 45px; height: 45px; border-radius: 50%; display: flex;
+    justify-content: center; align-items: center; font-size: 18px;
+    font-weight: bold; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Ball Color Classes */
 .ball-yellow { background-color: var(--lotto-yellow); }
 .ball-blue { background-color: var(--lotto-blue); }
 .ball-red { background-color: var(--lotto-red); }
 .ball-gray { background-color: var(--lotto-gray); }
 .ball-green { background-color: var(--lotto-green); }
 
-/* Inquiry Form Styles */
-.inquiry-section {
-    margin-top: 50px;
-    text-align: left;
-}
+.inquiry-section { margin-top: 50px; text-align: left; }
+.divider { border: 0; height: 1px; background: #eee; margin: 40px 0; }
+.inquiry-section h2 { color: var(--text-color); font-size: 20px; margin-bottom: 25px; text-align: center; font-weight: 700; }
+.inquiry-form { display: flex; flex-direction: column; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 14px; font-weight: 600; color: var(--gray); }
+.form-group input, .form-group textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; transition: all 0.2s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--main-color); box-shadow: 0 0 0 3px rgba(63,81,181,0.1); }
+.submit-btn { margin-top: 10px; background-color: var(--main-color); width: 100%; }
 
-.divider {
-    border: 0;
-    height: 1px;
-    background: #eee;
-    margin: 40px 0;
-}
-
-.inquiry-section h2 {
-    color: var(--text-color);
-    font-size: 20px;
-    margin-bottom: 25px;
-    text-align: center;
-    font-weight: 700;
-}
-
-.inquiry-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--gray);
-}
-
-.form-group input, 
-.form-group textarea {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 15px;
-    font-family: inherit;
-    transition: all 0.2s;
-}
-
-.form-group input:focus, 
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--main-color);
-    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
-}
-
-.submit-btn {
-    margin-top: 10px;
-    background-color: var(--main-color);
-    width: 100%;
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .page-wrapper {
+        flex-direction: column;
+    }
+    .side-content {
+        min-width: 100%;
+    }
 }
