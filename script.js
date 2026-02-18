@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const generate5Btn = document.getElementById('generate5Btn');
     const resultsContainer = document.getElementById('resultsContainer');
 
-    generate1Btn.addEventListener('click', () => renderLottoSets(1));
-    generate5Btn.addEventListener('click', () => renderLottoSets(5));
+    // 요소가 존재하는지 확인 후 이벤트 리스너 등록
+    if (generate1Btn) {
+        generate1Btn.addEventListener('click', () => renderLottoSets(1));
+    }
+    if (generate5Btn) {
+        generate5Btn.addEventListener('click', () => renderLottoSets(5));
+    }
 
     function getBallColorClass(num) {
         if (num <= 10) return 'ball-yellow';
@@ -23,13 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderLottoSets(count) {
-        resultsContainer.innerHTML = ''; // 기존 결과 초기화
+        if (!resultsContainer) return;
+        
+        resultsContainer.innerHTML = ''; 
 
         for (let i = 0; i < count; i++) {
             const numbers = generateSingleSet();
             const setDiv = document.createElement('div');
             setDiv.className = 'lotto-set';
-            setDiv.style.animationDelay = `${i * 0.1}s`; // 순차적으로 나타나는 애니메이션 효과
+            setDiv.style.animationDelay = `${i * 0.1}s`;
 
             numbers.forEach(num => {
                 const ball = document.createElement('div');
@@ -42,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 초기 로드 시 1회 추첨 결과 보여주기
-    renderLottoSets(1);
+    // 초기 실행
+    if (resultsContainer) {
+        renderLottoSets(1);
+    }
 });
