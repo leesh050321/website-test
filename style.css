@@ -20,7 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
+    margin: 40px 0; /* 여백 추가 */
     background-color: var(--bg-color);
     color: var(--text-color);
 }
@@ -117,3 +117,65 @@ button:active {
 .ball-red { background-color: var(--lotto-red); }
 .ball-gray { background-color: var(--lotto-gray); }
 .ball-green { background-color: var(--lotto-green); }
+
+/* Inquiry Form Styles */
+.inquiry-section {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #eee;
+    margin: 40px 0;
+}
+
+.inquiry-section h2 {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray);
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+}
+
+.submit-btn {
+    margin-top: 10px;
+    background-color: var(--main-color);
+    width: 100%;
+}
